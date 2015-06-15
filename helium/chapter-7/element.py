@@ -8,6 +8,7 @@ class Element:
 		self.wumpus = False
 		self.pit = False
 		self.breeze = False
+		self.gold = False
 		self.location = (x,y)
 
 	def set_wumpus(self, grid):
@@ -17,6 +18,9 @@ class Element:
 	def set_pit(self, grid):
 		self.pit = True
 		self.update_relatives(grid, lambda e: e.set_breeze())
+
+	def set_gold(self, grid):
+		self.gold = True
 
 	def update_relatives(self, grid, lam1):
 		for rel in self.relatives():
@@ -42,6 +46,7 @@ class Element:
 		str += 's' if self.stench else ''
 		str += 'p' if self.pit else ''
 		str += 'b' if self.breeze else ''
+		str += 'g' if self.gold else ''
 		return str
 
 	def get_rel(self, loc_offset):
